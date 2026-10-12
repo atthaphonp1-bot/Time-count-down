@@ -239,7 +239,7 @@
     width: 100%;
     max-width: 1180px;
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 14px;
   }
   .card {
@@ -473,7 +473,7 @@
   <main>
     <section class="empty">
       <h1>นับถอยหลัง<br /><span>สู่วันสำคัญ</span></h1>
-      <p>ตั้งวันและเวลาที่รอคอย แล้วดูว่าเหลืออีกกี่ปี เดือน สัปดาห์ วัน ชั่วโมง นาที และวินาที</p>
+      <p>ตั้งวันและเวลาที่รอคอย แล้วดูว่าเหลืออีกกี่ปี เดือน วัน ชั่วโมง นาที และวินาที</p>
       <button class="pill-btn" id="startBtn" type="button">เริ่มต้นเลย</button>
     </section>
 
@@ -530,7 +530,6 @@
   const UNITS = [
     { key: "years",   th: "ปี",       en: "Years" },
     { key: "months",  th: "เดือน",    en: "Months" },
-    { key: "weeks",   th: "สัปดาห์",  en: "Weeks" },
     { key: "days",    th: "วัน",      en: "Days" },
     { key: "hours",   th: "ชั่วโมง",  en: "Hours" },
     { key: "minutes", th: "นาที",     en: "Minutes" },
@@ -611,12 +610,11 @@
 
     const years = Math.floor(totalMonths / 12);
     const months = totalMonths % 12;
-    const weeks = Math.floor(rest / 604800); rest %= 604800;
     const days = Math.floor(rest / 86400);   rest %= 86400;
     const hours = Math.floor(rest / 3600);   rest %= 3600;
     const minutes = Math.floor(rest / 60);
     const seconds = rest % 60;
-    return { years, months, weeks, days, hours, minutes, seconds };
+    return { years, months, days, hours, minutes, seconds };
   }
 
   // ---------- State ----------
@@ -683,7 +681,7 @@
       `<b>${fmtNum.format(Math.floor(totalSec / 3600))}</b> ชั่วโมง · ` +
       `<b>${fmtNum.format(totalSec)}</b> วินาที`;
 
-    document.title = `${d.years ? d.years + "ป " : ""}${d.months ? d.months + "ด " : ""}${d.weeks * 7 + d.days}ว ${String(d.hours).padStart(2, "0")}:${String(d.minutes).padStart(2, "0")}:${String(d.seconds).padStart(2, "0")} · ${titleText}`;
+    document.title = `${d.years ? d.years + "ป " : ""}${d.months ? d.months + "ด " : ""}${d.days}ว ${String(d.hours).padStart(2, "0")}:${String(d.minutes).padStart(2, "0")}:${String(d.seconds).padStart(2, "0")} · ${titleText}`;
   }
 
   function start() {
